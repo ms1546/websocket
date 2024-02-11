@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Chat</title>
+</head>
+<body>
+    <script type="text/javascript">
+        const conn = new WebSocket('ws://localhost:8000/ws');
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+        };
+
+        conn.onmessage = function(e) {
+            console.log(e.data);
+        };
+
+        // サーバーにメッセージを送信する関数
+        function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            conn.send(message);
+        }
+    </script>
+    <input type="text" id="messageInput" />
+    <button onclick="sendMessage()">Send</button>
+</body>
+</html>
